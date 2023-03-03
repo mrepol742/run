@@ -1,6 +1,6 @@
 <?php
-$code = $_POST["code"] ?? "";
-$lang = $_POST["lang"] ?? "";
+$code = $_POST["Code"] ?? "";
+$lang = $_POST["Lang"] ?? "";
 
 if ($code == "") {
     exit("{\"error\":\"742\",\"description\":\"?code (Code) is not defined.\"}");
@@ -8,8 +8,6 @@ if ($code == "") {
 if ($lang == "") {
     exit("{\"error\":\"743\",\"description\":\"&lang (Language) is not defined.\"}");
 }
-
-$code = urldecode($code);
 
 switch ($lang) {
     case "php":
@@ -40,7 +38,13 @@ function write($file, $content) {
 
 function doContainHeader($lang, $content) {
     switch ($lang) {
-
+ case "php":
+            if (startsWith($content, "<?php") && endsWith($content, "?>")) {
+                return $content;
+            }
+            return "<?php\n" . $content . "\n?>";
+            
+        break;
         default:
         return $content;
     }

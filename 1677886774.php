@@ -1,0 +1,3 @@
+<?php 
+Breeder seeds are cannabis seeds that are bred in a controlled environment by a professional breeder. They are bred to produce a specific strain of cannabis with specific characteristics, such as high THC content, high CBD content, or a particular flavor profile. Breeder seeds are considered to be the highest quality cannabis seeds available, and are often used by experienced growers to produce their own custom strains. 
+?>
