@@ -1,6 +1,6 @@
 <?php
-$code = $_GET["code"] ?? "";
-$lang = $_GET["lang"] ?? "";
+$code = $_POST["code"] ?? "";
+$lang = $_POST["lang"] ?? "";
 
 if ($code == "") {
     exit("{\"error\":\"742\",\"description\":\"?code (Code) is not defined.\"}");
@@ -9,12 +9,7 @@ if ($lang == "") {
     exit("{\"error\":\"743\",\"description\":\"&lang (Language) is not defined.\"}");
 }
 
-$lang = mb_strtolower($lang,'UTF-8');
-if (is_base64($code)) {
-    $code = base64_decode($code);
-} else {
-    exit("{\"error\":\"745\",\"description\":\"Invalid base64 format.\"}");
-}
+$code = urldecode($code);
 
 switch ($lang) {
     case "php":
@@ -29,8 +24,6 @@ switch ($lang) {
         echo $output;
     break;
     case "nodejs":
-    break;
-    case "dragon":
     break;
     case "java":
     break;
@@ -47,16 +40,7 @@ function write($file, $content) {
 
 function doContainHeader($lang, $content) {
     switch ($lang) {
-        case "php":
-            if (startsWith($content, "<?php")) {
-                return $content;
-            }
-            if (endsWith($content, "?>")) {
-                return "<?php " . $content;
-            }
-            return "<?php " . $content . " ?>";
-            
-        break;
+
         default:
         return $content;
     }
@@ -85,9 +69,4 @@ function endsWith($string, $endString) {
 function run($cmd) {
     return shell_exec($cmd);
 }
-
-function is_base64($s) {
-    return (bool) preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $s);
-}
-
 ?>
