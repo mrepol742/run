@@ -24,10 +24,11 @@ switch ($lang) {
   case "c":
    $filen = getTimestamp() . ".c";
         write($filen, $code);
-         run("gcc " . $filen);
+        $output1=    run("gcc " . $filen);
    $output = run("./a.out");
-        echo $output;
+        echo $output1 . "\n" . $output;
         unlink($filen);
+        unlink("a.out");
   break;
 case "python":
    $filen = getTimestamp() . ".python";
@@ -45,10 +46,11 @@ case "python":
    case "cplusplus":
    $filen = getTimestamp() . ".cpp";
         write($filen, $code);
-         run("g++ " . $filen);
+      $output1 =   run("g++ " . $filen);
    $output = run("./a.out");
-        echo $output;
+        echo $output1 . "\n" . $output;
         unlink($filen);
+        unlink("a.out");
   break;
   case "js":
   case "javascript":
@@ -61,10 +63,11 @@ case "python":
     case "java":
         $filen = getTimestamp();
         write($filen . ".java", $code);
-      run("javac " . $filen . ".java");
+     $output1 = run("javac " . $filen . ".java");
         $output = run("java Main");
-        echo $output;
+        echo $output1 . "\n" . $output;
         unlink($filen . ".java");
+        unlink("Main.class");
     break;
     default:
     exit("{\"error\":\"744\",\"description\":\"Language is not supported.\"}");
