@@ -29,6 +29,17 @@ switch ($lang) {
         echo $output;
         unlink($filen);
   break;
+case "python":
+   $filen = getTimestamp() . ".python";
+        write($filen, $code);
+        $output = run("python " . $filen);
+        echo $output;
+        unlink($filen);
+  break;
+  case "sh":
+  case "bash":
+  echo "Permission Denied!";
+  break;
   case "c++":
   case "cpp":
    case "cplusplus":
