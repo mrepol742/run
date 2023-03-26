@@ -1,1 +1,0 @@
-while (!false) console.log('$_&&@---');

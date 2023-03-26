@@ -31,7 +31,7 @@ switch ($lang) {
         unlink("a.out");
   break;
 case "python":
-   $filen = getTimestamp() . ".python";
+   $filen = getTimestamp() . ".py";
         write($filen, $code);
         $output = run("python " . $filen);
         echo $output;

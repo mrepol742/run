@@ -1,3 +1,0 @@
-Here you go!
-
-console.log(atob('ZXZhbChmdW5jdGlvbihwKXtyZXR1cm4gKGZ1bmN0aW9uKGEsYil7d2hpbGUoYT0tLWEpYj1hJTIwJiYwfHxhJiZiW2EtMV0oKX1yZXR1cm4gYn0pKFtdKSkocmVnZXhwKXx8W10pKCl9KQ=='));
