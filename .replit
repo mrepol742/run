@@ -1,0 +1,6 @@
+run = "while [ true ]; do php -S 0.0.0.0:8000 -t . ; done"
+
+entrypoint = "index.php"
+
+[nix]
+channel = "stable-22_11"
