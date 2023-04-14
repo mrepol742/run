@@ -1,4 +1,11 @@
 <?php
+
+$allowed = array('project-orion.mrepol853.repl.co', '0.0.0.0:8000');
+
+if (!in_array($_SERVER['HTTP_ORIGIN'], $allowed)) {
+    header('Location: https://project-orion.mrepol853.repl.co/run');
+}
+
 $code = $_POST["Code"] ?? "";
 $lang = $_POST["Lang"] ?? "";
 
@@ -75,7 +82,7 @@ case "python":
 }
 
 function write($file, $content) {
-    $myfile = fopen($file, "w") or die("{\"error\":\"769\",\"description\":\"Unable to write file.\"}");
+    $myfile = fopen("/cache/" . $file, "w") or die("{\"error\":\"769\",\"description\":\"Unable to write file.\"}");
     fwrite($myfile, $content);
     fclose($myfile);
 }
@@ -88,6 +95,7 @@ function getTimestamp() {
 }
 
 function run($cmd) {
+    shell_exec("cd cache");
     return shell_exec($cmd . " 2>&1");
 }
 ?>
