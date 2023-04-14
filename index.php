@@ -1,19 +1,13 @@
 <?php
 
-$allowed = array('project-orion.mrepol853.repl.co', '0.0.0.0:8000');
-
-if (!in_array($_SERVER['HTTP_ORIGIN'], $allowed)) {
-    header('Location: https://project-orion.mrepol853.repl.co/run');
-}
-
 $code = $_POST["Code"] ?? "";
 $lang = $_POST["Lang"] ?? "";
 
 if ($code == "") {
-    exit("{\"error\":\"742\",\"description\":\" (Code) is not defined.\"}");
+    exit("742");
 }
 if ($lang == "") {
-    exit("{\"error\":\"743\",\"description\":\" (Language) is not defined.\"}");
+    exit("743");
 }
 
 switch ($lang) {
@@ -31,11 +25,16 @@ switch ($lang) {
   case "c":
    $filen = getTimestamp() . ".c";
         write($filen, $code);
-        $output1=    run("gcc " . $filen);
-   $output = run("./a.out");
-        echo $output1 . "\n" . $output;
+        $output1=  run("gcc " . $filen);
+  if (file_exists("./a.out")) {
+         $output = run("./a.out");
+        echo $output;
         unlink($filen);
         unlink("a.out");
+  } else {
+     echo $output1;
+     unlink($filen);
+  }
   break;
 case "python":
    $filen = getTimestamp() . ".py";
@@ -54,10 +53,15 @@ case "python":
    $filen = getTimestamp() . ".cpp";
         write($filen, $code);
       $output1 =   run("g++ " . $filen);
+   if (file_exists("./a.out")) {
    $output = run("./a.out");
-        echo $output1 . "\n" . $output;
+        echo $output;
         unlink($filen);
         unlink("a.out");
+   } else {
+       echo $output1;
+     unlink($filen);
+   }
   break;
   case "js":
   case "javascript":
@@ -68,13 +72,18 @@ case "python":
         unlink($filen);
   break;
     case "java":
-        $filen = getTimestamp();
-        write($filen . ".java", $code);
-     $output1 = run("javac " . $filen . ".java");
+        $filen = getTimestamp() . "java";
+        write($filen, $code);
+     $output1 = run("javac " . $filen);
+     if (file_exists("Main.class")) {
         $output = run("java Main");
-        echo $output1 . "\n" . $output;
+        echo $output;
         unlink($filen . ".java");
         unlink("Main.class");
+     } else {
+          echo $output1;
+     unlink($filen);
+     }
     break;
     default:
     exit("{\"error\":\"744\",\"description\":\"Language is not supported.\"}");
@@ -82,7 +91,7 @@ case "python":
 }
 
 function write($file, $content) {
-    $myfile = fopen("/cache/" . $file, "w") or die("{\"error\":\"769\",\"description\":\"Unable to write file.\"}");
+    $myfile = fopen($file, "w") or die("{\"error\":\"769\",\"description\":\"Unable to write file.\"}");
     fwrite($myfile, $content);
     fclose($myfile);
 }
@@ -95,7 +104,7 @@ function getTimestamp() {
 }
 
 function run($cmd) {
-    shell_exec("cd cache");
+set_time_limit(5);
     return shell_exec($cmd . " 2>&1");
 }
 ?>
