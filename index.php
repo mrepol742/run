@@ -72,13 +72,13 @@ case "python":
         unlink($filen);
   break;
     case "java":
-        $filen = getTimestamp() . "java";
+        $filen = getTimestamp() . ".java";
         write($filen, $code);
-     $output1 = run("javac " . $filen);
+     $output1 = run("javac " . $filen );
      if (file_exists("Main.class")) {
         $output = run("java Main");
         echo $output;
-        unlink($filen . ".java");
+        unlink($filen);
         unlink("Main.class");
      } else {
           echo $output1;
