@@ -1,6 +1,6 @@
 <?php
-$code = $_GET["Code"] ?? "";
-$lang = $_GET["Lang"] ?? "";
+$code = $_POST["Code"] ?? "";
+$lang = $_POST["Lang"] ?? "";
 
 if ($code == "") {
     exit("{\"error\":\"Code is undefined\"}");
