@@ -1,4 +1,9 @@
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] != "POST") {
+    exit("{\"error\":\"Invalid request method\"}");
+}
+
 $code = $_POST["Code"] ?? "";
 $lang = $_POST["Lang"] ?? "";
 
