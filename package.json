@@ -1,0 +1,31 @@
+{
+  "name": "run",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "clear && while [ true ]; do node index.js ; done",
+    "test": "clear && node --inspect index.js",
+    "prettier": "prettier ./ --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrepol742/run.git"
+  },
+  "author": "Melvin Jones Repol",
+  "license": "SEE LICENSE IN https://github.com/mrepol742/Mrepol742-the-License",
+  "bugs": {
+    "url": "https://github.com/mrepol742/run/issues"
+  },
+  "homepage": "https://github.com/mrepol742/run#readme",
+  "dependencies": {
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
