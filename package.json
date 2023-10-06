@@ -3,7 +3,6 @@
   "version": "1.0.1",
   "description": "Backend for Project Orion run command.",
   "main": "index.js",
-  "private": true,
   "scripts": {
     "start": "clear && while [ true ]; do node index.js ; done",
     "test": "clear && node --inspect index.js",
