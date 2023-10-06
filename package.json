@@ -1,7 +1,7 @@
 {
-  "name": "run",
+  "name": "project-orion-run",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for Project Orion run command.",
   "main": "index.js",
   "private": true,
   "scripts": {
